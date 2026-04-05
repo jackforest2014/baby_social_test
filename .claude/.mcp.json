@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "source .env 2>/dev/null; npx -y @modelcontextprotocol/server-postgres postgresql://postgres:postgres@localhost:5432/${BABYSOCIAL_DB_NAME:-babysocial}"
+      ]
+    },
+    "github": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) npx -y @modelcontextprotocol/server-github"
+      ]
+    }
+  }
+}
