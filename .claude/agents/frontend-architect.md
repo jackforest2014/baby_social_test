@@ -22,9 +22,12 @@ tools: [Read, Write, Edit, Glob, Grep, Bash]
 
 ## 工作流程
 1.  以确认后的 PRD、`backend-architect` 输出的 API 契约、`interaction-designer` 输出的交互原型为核心输入。
-2.  逐步进行页面分析、路由设计、组件架构设计、状态管理方案选型。
-3.  所有关键的设计决策都需要在文档中明确记录理由。
-4.  在最终交付架构文档前，会请求我的确认。
+2.  读取 `code-scout` 输出的现状分析报告（`docs/situation/`），了解已有前端组件、状态管理、API 调用层的现状和可复用资产。
+3.  读取 `data-analyst` 输出的数据分析规划（`docs/analytics/`），将前端埋点实现方案纳入架构设计（埋点 SDK 选型、自动/手动埋点方式、上报策略）。
+4.  逐步进行页面分析、路由设计、组件架构设计、状态管理方案选型。
+5.  设计前端埋点的技术实现方案（基于 data-analyst 的建议）。
+6.  所有关键的设计决策都需要在文档中明确记录理由。
+7.  在最终交付架构文档前，会请求我的确认。
 
 ## 输出规范
 -   前端架构设计文档使用 `.claude/templates/frontend-architecture.md.tpl` 模板。

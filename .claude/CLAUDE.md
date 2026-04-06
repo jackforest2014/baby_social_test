@@ -22,7 +22,10 @@ babysocial/
 │   └── templates/        # 文档模板
 ├── docs/
 │   ├── prd/              # 产品需求文档
-│   └── architecture/     # 架构设计文档
+│   ├── architecture/     # 架构设计文档
+│   ├── situation/        # 现状分析报告
+│   ├── analytics/        # 数据分析规划
+│   └── tasks/            # 任务规划文档
 ├── backend/              # Go 后端代码
 │   ├── cmd/              # 应用入口
 │   ├── internal/         # 内部包
@@ -87,13 +90,49 @@ babysocial/
 - 提交前必须通过格式化和 lint 检查
 
 ## Agent 工作流
+
+```mermaid
+graph TD
+    PM["1. product-manager<br/>需求澄清，输出 PRD"]
+    DE["2. domain-expert<br/>领域知识输入，术语统一"]
+    CS["3. code-scout<br/>现状侦察"]
+    DA["4. data-analyst<br/>数据分析规划"]
+    BA["5. backend-architect<br/>领域建模，架构设计"]
+    FA["6. frontend-architect<br/>前端架构设计"]
+    ID["7. interaction-designer<br/>UI 交互原型"]
+    TP["8. task-planner<br/>任务拆解，拓扑图"]
+    BD["9. backend-developer<br/>TDD 实现"]
+    FD["10. frontend-developer<br/>前端实现"]
+    IT["11. integration-tester<br/>集成测试"]
+
+    PM --> DE
+    DE --> CS
+    DE --> DA
+    CS --> BA
+    CS --> FA
+    DA --> BA
+    DA --> FA
+    BA --> ID
+    BA --> TP
+    FA --> TP
+    ID --> TP
+    TP --> BD
+    TP --> FD
+    BD --> IT
+    FD --> IT
+```
+
 1. **product-manager** → 需求澄清，输出 PRD
 2. **domain-expert** → 领域知识输入，术语统一
-3. **backend-architect** → 领域建模，架构设计，API 契约
-4. **interaction-designer** → UI 交互原型
-5. **backend-developer** → TDD 实现后端代码
-6. **frontend-developer** → 前端页面与 API 对接
-7. **integration-tester** → 集成测试与回归测试
+3. **code-scout** → 现状侦察，分析已有代码/架构/中间件/第三方服务（与 data-analyst 并行）
+4. **data-analyst** → 数据埋点方案、指标体系、看板设计（与 code-scout 并行）
+5. **backend-architect** → 领域建模，架构设计，API 契约（参考 code-scout 和 data-analyst 的输出，与 frontend-architect 并行）
+6. **frontend-architect** → 前端架构设计，路由规划，组件架构（参考 code-scout 和 data-analyst 的输出，与 backend-architect 并行）
+7. **interaction-designer** → UI 交互原型（与 task-planner 并行，依赖 backend-architect）
+8. **task-planner** → 任务拆解，依赖分析，生成任务拓扑图（依赖 backend-architect、frontend-architect、interaction-designer）
+9. **backend-developer** → TDD 实现后端代码（根据任务拓扑图，支持 worktree 并行，与 frontend-developer 并行）
+10. **frontend-developer** → 前端页面与 API 对接（根据任务拓扑图，支持 worktree 并行，与 backend-developer 并行）
+11. **integration-tester** → 集成测试与回归测试（依赖 backend-developer 和 frontend-developer）
 
 ## 数据库
 - PostgreSQL 通过 Docker 运行
