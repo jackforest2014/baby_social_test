@@ -112,8 +112,8 @@ graph TD
     CS --> FA
     DA --> BA
     DA --> FA
+    BA --> FA
     BA --> ID
-    BA --> TP
     FA --> TP
     ID --> TP
     TP --> BD
@@ -126,8 +126,8 @@ graph TD
 2. **domain-expert** → 领域知识输入，术语统一
 3. **code-scout** → 现状侦察，分析已有代码/架构/中间件/第三方服务（与 data-analyst 并行）
 4. **data-analyst** → 数据埋点方案、指标体系、看板设计（与 code-scout 并行）
-5. **backend-architect** → 领域建模，架构设计，API 契约（参考 code-scout 和 data-analyst 的输出，与 frontend-architect 并行）
-6. **frontend-architect** → 前端架构设计，路由规划，组件架构（参考 code-scout 和 data-analyst 的输出，与 backend-architect 并行）
+5. **backend-architect** → 领域建模，架构设计，API 契约（参考 code-scout 和 data-analyst 的输出）
+6. **frontend-architect** → 前端架构设计，路由规划，组件架构（依赖 backend-architect 的 API 契约产出）
 7. **interaction-designer** → UI 交互原型（与 task-planner 并行，依赖 backend-architect）
 8. **task-planner** → 任务拆解，依赖分析，生成任务拓扑图（依赖 backend-architect、frontend-architect、interaction-designer）
 9. **backend-developer** → TDD 实现后端代码（根据任务拓扑图，支持 worktree 并行，与 frontend-developer 并行）
