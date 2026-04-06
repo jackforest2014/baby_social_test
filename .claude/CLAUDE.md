@@ -18,11 +18,11 @@ babysocial/
 │   ├── commands/         # 自定义斜杠命令
 │   ├── rules/            # 项目规则
 │   ├── scripts/          # 钩子脚本
-│   └── skills/           # 自定义技能
+│   ├── skills/           # 自定义技能
+│   └── templates/        # 文档模板
 ├── docs/
 │   ├── prd/              # 产品需求文档
 │   └── architecture/     # 架构设计文档
-├── templates/            # 文档模板
 ├── backend/              # Go 后端代码
 │   ├── cmd/              # 应用入口
 │   ├── internal/         # 内部包
